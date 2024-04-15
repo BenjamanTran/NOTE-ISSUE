@@ -28,3 +28,5 @@ $localfiles
 END
 
 # set up crontab -e * 8 1,2,3,4,5 * * /bin/bash mysql_backup.sh
+# send notification to SLACKCHANEL
+curl -X POST -H 'Content-type: application/json' --data "{\"text\": \"Redmine Backup: \", \"attachments\": [{\"fields\": [{\"title\": \"Date: \", \"value\": \"$NOW\", \"short\": false}, {\"title\": \"DBNAME: \", \"value\": \"$DBS\", \"short\": false}, {\"title\": \"Files stored: \", \"value\": \"$localfiles\", \"short\": false}]}]}" "$SLACKCHANEL"
